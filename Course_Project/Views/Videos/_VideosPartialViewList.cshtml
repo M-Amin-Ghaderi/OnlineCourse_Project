@@ -1,0 +1,42 @@
+﻿@model List<Video>
+
+
+
+
+<div class="card border-0">
+    <div class="card-body">
+        <table class="table shadow">
+            <thead>
+                <tr>
+                    <th colspan="12" class="bg-dark text-white">عنوان ویدیو</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var video in Model)
+                {
+                    <tr>
+                        <td>@video.Title</td>
+                        <td>
+                            @if (!string.IsNullOrEmpty(video.Url))
+                            {
+                                <video width="320" height="180" class="rounded-3" controls>
+                                    <source src="@video.Url" type="video/mp4" />
+                                </video>
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a asp-controller="Videos" asp-action="Edit" asp-route-id="@video.Id" class="btn btn-sm btn-warning">ویرایش @video.Title</a>
+                            <a asp-controller="Videos" asp-action="Delete" data-id="@video.Id" asp-route-id="@video.Id" class="btn btn-sm btn-danger deleteVideo">حذف @video.Title</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@*
+@section Scripts {
+    <script src="~/Js/Video.js"></script>
+} *@

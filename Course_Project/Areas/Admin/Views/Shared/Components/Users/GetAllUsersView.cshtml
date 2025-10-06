@@ -1,0 +1,41 @@
+﻿@model IEnumerable<User>
+
+
+
+<div class="card shadow-sm">
+    <div class="card-header bg-dark text-white">لیست دوره‌ها</div>
+    <div class="card-body p-0">
+        <table class="table table-warning table-striped mb-0">
+            <thead>
+                <tr>
+                    <th>نام کاربری</th>
+                    <th>ایمیل</th>
+                    <th>شماره موبایل</th>
+                    <th>وضعیت حساب کاربری</th>
+                    <th>عملیات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.UserName
+                        </td>
+                        <td>
+                            @item.Email
+                        </td>
+                        <td>
+                            @item.PhoneNumber
+                        </td>
+                        <td>
+                            
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

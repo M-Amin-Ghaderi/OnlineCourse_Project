@@ -1,0 +1,40 @@
+﻿@model RegisterViewModel
+
+<form asp-action="Register" method="post">
+    <table class="table shadow mt-4">
+        <tr>
+            <th colspan="12" class="bg-dark text-white rounded-top-2">ثبت نام</th>
+        </tr>
+        <tr>
+            <td>
+                <input asp-for="Username" placeholder="نام کاربری" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input asp-for="Email" placeholder="ایمیل" class="form-control text-start">
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input asp-for="Password" type="password" placeholder="رمز عبور" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input asp-for="ConfirmPassword" type="password" placeholder="تکرار رمز عبور" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+
+            </td>
+        </tr>
+        <tr>
+            <td class="rounded-bottom-2">
+                <button type="submit" class="btn btn-success">ثبت نام</button>
+                <a asp-action="Index" asp-controller="Home" class="btn btn-outline-primary">بازگشت</a>
+            </td>
+        </tr>
+    </table>
+</form>

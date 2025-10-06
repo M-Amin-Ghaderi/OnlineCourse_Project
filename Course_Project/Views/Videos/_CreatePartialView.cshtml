@@ -1,0 +1,24 @@
+﻿@model Video
+
+
+<form id="createVideoForm" asp-action="Create" asp-controller="Videos"  method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="CourseId" />
+    @Html.AntiForgeryToken()
+
+    <div class="mb-3">
+        <label asp-for="Title">عنوان ویدیو</label>
+        <input asp-for="Title" required class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label>آپلود فایل ویدیو</label>
+        <input type="file" name="videoFile" required accept="video/*" class="form-control"/>
+    </div>
+
+    <button type="submit" class="btn btn-success">افزودن ویدئو</button>
+</form>
+
+@* @section Scripts{
+    <script src="~/Js/Course.js"></script>
+} *@

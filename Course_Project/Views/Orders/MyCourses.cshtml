@@ -1,0 +1,13 @@
+﻿@model List<Course>
+
+<h2>دوره‌های من</h2>
+
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>
+            @item.Title -
+            <a asp-action="Videos" asp-route-id="@item.Id">مشاهده دوره‌</a>
+        </li>
+    }
+</ul>

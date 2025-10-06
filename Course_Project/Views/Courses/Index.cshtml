@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Course>
+
+<h2 class="my-3">لیست دوره ها</h2>
+
+<a asp-action="Create" class="btn btn-primary my-3">افزودن دوره جدید</a>
+
+<table class="table table-primary">
+    <thead>
+        <tr>
+            <th>عنوان</th>
+            <th>قیمت</th>
+            <th>عملیات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr >
+                <td>@item.Title</td>
+                <td>@item.Price</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-warning">جزئیات دوره</a>
+                    
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

@@ -1,0 +1,47 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<User> UserManager
+@inject SignInManager<User> SignInManager
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    if (User.IsInRole("Admin"))
+    {
+        <li class="nav-item">
+            <a class="btn btn-secondary" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">پنل ادمین</a>
+        </li>
+        <li class="nav-item">
+            <a class="btn btn-danger" asp-controller="Accounts" asp-action="LogOut">
+                خروج
+            </a>
+        </li>
+    }
+    else if (User.IsInRole("Teacher"))
+    {
+
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="btn btn-secondary" asp-controller="Home" asp-action="Index">
+                سلام @User.Identity?.Name
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="btn btn-danger" asp-controller="Accounts" asp-action="LogOut">
+                خروج
+            </a>
+        </li>
+    }
+}
+else
+{
+    <li class="nav-item">
+        <a class="btn btn-secondary" asp-controller="Accounts" asp-action="Login">ورود</a>
+    </li>
+    <li class="nav-item">
+        <a class="btn btn-secondary" asp-controller="Accounts" asp-action="Register">ثبت‌نام</a>
+    </li>
+}
+
+

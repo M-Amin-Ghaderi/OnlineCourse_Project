@@ -1,0 +1,40 @@
+﻿@model OnlineCourse.Web_Project.ViewModels.CourseViewModel
+
+<h1 class="my-3">افزودن دوره جدید</h1>
+
+<h4>دوره</h4>
+<hr />
+<div class="row">
+    <div class="">
+        <form asp-action="Create" class="">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            @* <input hidden asp-for="Id"/> *@
+            <div class="mb-3 col-md-4">
+                <label asp-for="Title" class="form-label"></label>
+                <input asp-for="Title" class="form-control" placeholder="عنوان دوره" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-8">
+                <label asp-for="Description" class="form-label"></label>
+                <textarea asp-for="Description" rows="8" cols="32" class="form-control" placeholder="توضیحات دوره"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="mb-3 col-md-4">
+                <label asp-for="Price" class="form-label"></label> 
+                <input type="number" max="100000000" asp-for="Price" class="form-control text-start" placeholder="تومان" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <input type="submit" value="افزودن دوره" class="btn btn-success px-4" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-primary">بازگشت به لیست</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial",false);}
+}

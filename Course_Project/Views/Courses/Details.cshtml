@@ -1,0 +1,54 @@
+﻿@model OnlineCourse_Project.Models.Course
+
+@{
+    ViewData["Title"] = "Details";
+}
+<div class="mt-4 shadow">
+    <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-header bg-dark text-white">
+            <h4 class="mb-0">جزئیات دوره @Model.Title</h4>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped ">
+                <tbody>
+                    <tr>
+                        <th>نام محصول</th>
+                        <td>@Model.Title</td>
+                    </tr>
+                    <tr>
+                        <th>قیمت</th>
+                        <td>@Model.Price.ToString("N0") تومان</td>
+                    </tr>
+                    <tr>
+                        <th>توضیحات</th>
+                        <td>@Model.Description</td>
+                    </tr>
+                    <tr>
+                        <th>عملیات</th>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">ویرایش</a>
+                            <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">حذف</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>ویدیوهای دوره</th>
+                        <td colspan="4">@await Html.PartialAsync("~/Views/Videos/_VideosPartialViewList.cshtml", Model.Videos)</td>
+                    </tr>
+                    <tr>
+                        <th class="col-2">افزودن ویدیو جدید</th>
+                        <td>@await Html.PartialAsync("~/Views/Videos/_CreatePartialView.cshtml", new Video { CourseId = Model.Id })</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer text-start">
+            
+            <a asp-action="Index" class="btn btn-outline-secondary">بازگشت</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/Js/Course.js"></script>
+    <script src="~/Js/Video.js"></script>
+}

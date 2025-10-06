@@ -1,0 +1,51 @@
+﻿@model LoginViewModel
+
+
+<form asp-action="Login" method="post">
+    <table class="table shadow mt-4">
+        <tr>
+            <th colspan="12" class="bg-dark text-white rounded-top-2">ثبت نام</th>
+        </tr>
+        <tr>
+            <td>
+                <input asp-for="Username" placeholder="نام کاربری" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input asp-for="Password" id="password" type="password" placeholder="رمز عبور" class="form-control mb-2" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </td>
+            <td class="align-middle">
+                <div class="form-check align-middle d-flex">
+                    <input class="form-check-input mx-1" type="checkbox" id="flexCheckChecked">
+                    <label class="form-check-label"  for="flexCheckChecked">نمایش رمز عبور</label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="align-middle">
+                <div class="form-check align-middle d-flex">
+                    <input asp-for="RememberMe" class="form-check-input mx-1" type="checkbox">
+                    <label class="form-check-label" for="flexCheckChecked">مرا به خاطر بسپار</label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a asp-action="Register" asp-controller="Accounts" class="link-primary">قبلا ثبت نام نکرده اید</a>
+            </td>
+        </tr>
+        <tr>
+            <td class="rounded-bottom-2">
+                <button type="submit" class="btn btn-outline-success">ورود</button>
+                <a asp-action="Index" asp-controller="Home" class="btn btn-outline-primary">بازگشت</a>
+            </td>
+        </tr>
+    </table>
+</form>
+
+@section Scripts {
+    <script src="~/Js/Login.js"></script>
+}
