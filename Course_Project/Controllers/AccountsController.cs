@@ -66,7 +66,7 @@ namespace OnlineCourse.Web_Project.Controllers
                     if (result.Succeeded)
                     {
                         return await RedirectUserByRole(user);
-                    }
+                    } 
                 }
                 ModelState.AddModelError(string.Empty, "نام کاربری یا کلمه عبور اشتباه است");
             }
@@ -75,7 +75,7 @@ namespace OnlineCourse.Web_Project.Controllers
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home", new { area = "" });
         }
 
 

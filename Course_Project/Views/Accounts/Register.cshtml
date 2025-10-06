@@ -1,6 +1,8 @@
 ﻿@model RegisterViewModel
 
+
 <form asp-action="Register" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <table class="table shadow mt-4">
         <tr>
             <th colspan="12" class="bg-dark text-white rounded-top-2">ثبت نام</th>
@@ -19,15 +21,26 @@
         </tr>
         <tr>
             <td>
-                <input asp-for="Password" type="password" placeholder="رمز عبور" class="form-control" />
+                <input asp-for="Password" id="password" type="password" placeholder="رمز عبور" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
+            </td>
+            <td class="align-middle">
+                <div class="form-check align-middle d-flex">
+                    <input class="form-check-input mx-1" type="checkbox" id="passwordChecked">
+                    <label class="form-check-label" for="passwordChecked">نمایش رمز عبور</label>
+                </div>
             </td>
         </tr>
         <tr>
             <td>
-                <input asp-for="ConfirmPassword" type="password" placeholder="تکرار رمز عبور" class="form-control" />
+                <input asp-for="ConfirmPassword" id="confirmPassword" type="password" placeholder="تکرار رمز عبور" class="form-control" />
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-
+            </td>
+            <td class="align-middle">
+                <div class="form-check align-middle d-flex">
+                    <input class="form-check-input mx-1" type="checkbox" id="confirmPasswordChecked">
+                    <label class="form-check-label" for="confirmPasswordChecked">نمایش رمز عبور</label>
+                </div>
             </td>
         </tr>
         <tr>
@@ -38,3 +51,7 @@
         </tr>
     </table>
 </form>
+
+@section Scripts {
+    <script src="~/Js/Register.js"></script>
+}

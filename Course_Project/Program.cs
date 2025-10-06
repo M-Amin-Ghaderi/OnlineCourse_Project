@@ -2,6 +2,7 @@ using Infrastructure.Identity;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using OnlineCourse.Web_Project.Helpers.Validation;
 using OnlineCourse_Project.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,12 +25,13 @@ builder.WebHost.ConfigureKestrel(serverOptions =>
 
 builder.Services.AddIdentity<User, IdentityRole>(opt =>
 {
-
+    opt.User.RequireUniqueEmail = true;
     opt.Password.RequireDigit = true;
     opt.Password.RequiredLength = 6;
     opt.Password.RequireNonAlphanumeric = true;
     
 }).AddEntityFrameworkStores<OnlineCourse_DbContext>()
+.AddErrorDescriber<PersianIdentityErrorDescriber>()
 .AddDefaultTokenProviders();
 
 builder.Services.ConfigureApplicationCookie(opt =>

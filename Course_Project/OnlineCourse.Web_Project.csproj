@@ -27,6 +27,10 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\AdminCourses\" />
+    <Folder Include="Areas\Teachers\Controllers\" />
+    <Folder Include="Areas\Teachers\Data\" />
+    <Folder Include="Areas\Teachers\Models\" />
+    <Folder Include="Areas\Teachers\Views\" />
     <Folder Include="Migrations\" />
     <Folder Include="wwwroot\uploads\" />
   </ItemGroup>

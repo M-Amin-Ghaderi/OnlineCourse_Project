@@ -2,6 +2,7 @@
 
 
 <form asp-action="Login" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <table class="table shadow mt-4">
         <tr>
             <th colspan="12" class="bg-dark text-white rounded-top-2">ثبت نام</th>
@@ -20,7 +21,7 @@
             <td class="align-middle">
                 <div class="form-check align-middle d-flex">
                     <input class="form-check-input mx-1" type="checkbox" id="flexCheckChecked">
-                    <label class="form-check-label"  for="flexCheckChecked">نمایش رمز عبور</label>
+                    <label class="form-check-label" for="flexCheckChecked">نمایش رمز عبور</label>
                 </div>
             </td>
         </tr>
