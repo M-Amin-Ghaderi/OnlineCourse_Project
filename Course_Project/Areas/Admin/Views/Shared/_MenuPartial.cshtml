@@ -5,59 +5,67 @@
 
     <!-- Widgets -->
     <div class="row mb-4">
-        <div class="col-md-3">
-            <div class="card text-white bg-primary mb-3">
-                <div class="card-body">
-                    <h5 class="card-title d-flex justify-content-around">
+        <a asp-area="Admin" asp-controller="Dashboard" asp-action="Users" class="col-md-3 text-decoration-none">
+            <div class="card text-white bg-primary mb-3 link-zoom">
+                <div class="card-body text-center text-nowrap row user-select-none">
+                    <div class="col-6 fw-bolder align-content-center">
                         <label>
                             تعداد کاربران
                         </label>
-                        <label class="fw-bold">
+                    </div>
+                    <div class="col-6 fw-bolder align-content-center">
+                        <label class="fw-bold p-1 ">
                             @ViewData["UsersCount"]
                         </label>
-                    </h5>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card text-white bg-success mb-3">
-                <div class="card-body">
-                    <h5 class="card-title d-flex justify-content-around">
+        </a>
+        <div class="col-md-3 text-decoration-none">
+            <div class="card text-white bg-success mb-3 link-zoom">
+                <div class="card-body text-center text-nowrap row user-select-none">
+                    <div class="col-6 fw-bolder align-content-center">
                         <label>
                             تعداد دوره‌ها
                         </label>
-                        <label class="fw-bold">
+                    </div>
+                    <div class="col-6 overflow-hidden">
+                        <label class="fw-bold p-1 ">
                             @ViewData["CourseCount"]
                         </label>
-                    </h5>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="card text-white bg-warning mb-3">
-                <div class="card-body">
-                    <h5 class="card-title d-flex justify-content-around">
-                        <label>
+        <div class="col-md-3 text-decoration-none">
+            <div class="card text-white bg-warning mb-3 link-zoom">
+                <div class="card-body text-center text-nowrap row user-select-none">
+                    <div class="col-6 fw-bolder align-content-center">
+                        <label class="fw-bolder">
                             درآمد ماهانه
                         </label>
-                        <label>
-
+                    </div>
+                    <div class="col-6 overflow-hidden">
+                        <label class="fw-bolder p-1 ">
+                            0
                         </label>
-                    </h5>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="card text-white bg-danger mb-3">
-                <div class="card-body">
-                    <h5 class="card-title d-flex justify-content-around">
+        <div class="col-md-3 text-decoration-none">
+            <div class="card text-white bg-danger mb-3 link-zoom">
+                <div class="card-body text-center text-nowrap row user-select-none">
+                    <div class="col-6 fw-bolder align-content-center">
                         <label>
-                            سفارش‌های جدید
+                            درخواست ها
                         </label>
-                        <label>
-
+                    </div>
+                    <div class="col-6 overflow-hidden">
+                        <label class="bg-light text-danger fw-bold rounded-2 p-1 ">
+                            0
                         </label>
-                    </h5>
+                    </div>
                 </div>
             </div>
         </div>

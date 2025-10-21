@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Domain.Entities;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OnlineCourse_Project.Models
@@ -9,13 +10,12 @@ namespace OnlineCourse_Project.Models
 
         public string UserId { get; set; }
 
-        public int CourseId { get; set; }
-
         public DateTime PurchaseDate { get; set; } = DateTime.Now;
+        public decimal TotalPrice { get; set; }
 
-        public User? AppUser { get; set; }
+        public ApplicationUser? User { get; set; }
 
-        public Course Course { get; set; }
+        public ICollection<OrderCourse> OrderCourses { get; set; }
 
     }
 }

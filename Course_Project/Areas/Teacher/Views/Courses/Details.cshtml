@@ -1,0 +1,86 @@
+﻿@model OnlineCourse.Web_Project.ViewModels.CourseViewModels.CourseDetailsViewModel
+
+@{
+    ViewData["Title"] = "جزئیات دوره";
+}
+<main class="col-10 my-3 px-4">
+    <h1>جزئیات دوره</h1>
+
+    <div class="justify-content-center">
+        <hr />
+        <div class="text-dark">
+            <h3 class="text-center fw-bold">@Model.Title</h3>
+            <div class="bg-primary rounded-4 p-3 text-center">
+                <div class="row mb-2 column-gap-1 justify-content-center">
+                    <div class="col-2 py-2 bg-primary-subtle fw-bold rounded-1">
+                        <label asp-for="Title"></label>
+                    </div>
+                    <div class="col-9 py-2 bg-white rounded-1">
+                        @Model.Title
+                    </div>
+                </div>
+                <div class="row mb-2 column-gap-1 justify-content-center">
+                    <div class="col-2 py-2 bg-primary-subtle fw-bold rounded-1 ">
+                        <label asp-for="Price"></label>
+                    </div>
+                    <div class="col-9 py-2 bg-white rounded-1">
+                        @Model.Price.ToString("N0") تومان
+                    </div>
+                </div>
+                <div class="row mb-2 column-gap-1 justify-content-center">
+                    <div class="col-2 py-2 bg-primary-subtle fw-bold rounded-1 align-content-center">
+                        <label asp-for="ImageUrl"></label>
+                    </div>
+                    <div class="col-9 py-2 bg-white rounded-1">
+                        <img src="~/Images/@Model.ImageUrl" class="w-50" />
+                    </div>
+                </div>
+                <div class="row mb-2 column-gap-1 justify-content-center">
+                    <div class="col-2 py-2 bg-primary-subtle fw-bold rounded-1">
+                        <label asp-for="CreatedDate"></label>
+                    </div>
+                    <div class="col-9 py-2 bg-white rounded-1">
+                        @Model.CreatedDate
+                    </div>
+                </div>
+                <div class="row mb-2 column-gap-1 justify-content-center">
+                    <div class="col-2 py-2 bg-primary-subtle fw-bold rounded-1 align-content-center">
+                        <label asp-for="IsActive"></label>
+                    </div>
+                    <div class="col-9 py-4 bg-white rounded-1">
+                        @if (Model.IsActive)
+                        {
+                            <span class="text-success rounded-5 p-2 bg-dark fw-bolder">فعال</span>
+                        }
+                        else
+                        {
+                            <span class="text-danger rounded-5 p-2 bg-dark fw-bolder">غیرفعال</span>
+                        }
+                    </div>
+                </div>
+                <div class="row mb-2 column-gap-1 justify-content-center">
+                    <div class="col-2 py-2 bg-primary-subtle fw-bold rounded-1 align-content-center">
+                        <label>عملیات</label>
+                    </div>
+                    <div class="col-9 py-2 bg-white rounded-1">
+                        <a class="btn btn-outline-warning" asp-area="Teacher" asp-controller="Courses" asp-action="Edit" asp-route-id="@Model.Id">ویرایش</a>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-primary rounded-4 my-2 p-3">
+                <div class="mb-2 py-4 bg-primary-subtle fw-bold rounded-2 text-center">
+                    <h4>
+                        ویدیو ها
+                    </h4>
+                </div>
+                <div class="py-4 bg-white rounded-1">
+                    @* @await Component.InvokeAsync("CourseVideos", new { courseId = Model.Id }) *@
+                    <vc:course-videos  course-id="@Model.Id"></vc:course-videos>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mt-2">
+        <a asp-action="Index" class="btn btn-outline-info">بازگشت به لیست</a>
+    </div>
+</main>

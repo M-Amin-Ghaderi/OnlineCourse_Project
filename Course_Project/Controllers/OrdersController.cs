@@ -10,8 +10,8 @@ namespace OnlineCourse.Web_Project.Controllers
     public class OrdersController : Controller
     {
         private readonly OnlineCourse_DbContext context;
-        private readonly UserManager<User> userManager;
-        public OrdersController(OnlineCourse_DbContext context, UserManager<User> userManager)
+        private readonly UserManager<ApplicationUser> userManager;
+        public OrdersController(OnlineCourse_DbContext context, UserManager<ApplicationUser> userManager)
         {
             this.context = context;
             this.userManager = userManager;
@@ -24,7 +24,7 @@ namespace OnlineCourse.Web_Project.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
-            bool alreadyPurchased = await context.Orders.AnyAsync(o => o.CourseId == courseId && o.UserId == user.Id);
+            bool alreadyPurchased = await context.OrderCourses.AnyAsync(oc => oc.CourseId == courseId && oc.Order.UserId == user.Id);
             if (alreadyPurchased)
             {
                 TempData["Message"] = "شما قبلاً این دوره را خریداری کرده‌اید.";
@@ -33,7 +33,7 @@ namespace OnlineCourse.Web_Project.Controllers
 
             var order = new Order
             {
-                CourseId = courseId,
+                //CourseId = courseId,
                 UserId = user.Id,
                 PurchaseDate = DateTime.Now
             };
@@ -54,7 +54,7 @@ namespace OnlineCourse.Web_Project.Controllers
             }
             var myCourses = await context.Orders
                 .Where(o => o.UserId == user.Id)
-                .Include(o => o.Course)
+                .Include(o => o.OrderCourses)
                 .ToListAsync();
             return View(myCourses);
         }
@@ -66,7 +66,7 @@ namespace OnlineCourse.Web_Project.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
-            bool hasAccess = await context.Orders.AnyAsync(o => o.CourseId == courseId && o.UserId == user.Id);
+            bool hasAccess = await context.OrderCourses.AnyAsync(oc => oc.CourseId == courseId && oc.Order.UserId == user.Id);
             if (!hasAccess)
             {
                 TempData["Message"] = "شما به این دوره دسترسی ندارید. لطفاً ابتدا آن را خریداری کنید.";

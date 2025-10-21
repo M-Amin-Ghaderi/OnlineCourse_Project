@@ -1,26 +1,22 @@
-﻿using NAudio.Wave;
+﻿using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.Elfie.Extensions;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using NAudio.Wave;
+using OnlineCourse.Web_Project.Mappers.VideoMappers;
+using OnlineCourse.Web_Project.ViewModels.VideoViewModels;
 using OnlineCourse_Project.Models;
-using System.Threading.Tasks;
-using System.IO;
-using Infrastructure.Identity;
 namespace OnlineCourse.Web_Project.Controllers
 {
     public class VideosController : Controller
     {
-        private readonly OnlineCourse_DbContext context;
-
-
-        public VideosController(OnlineCourse_DbContext context)
+        private readonly IVideoService videoService;
+        public VideosController(IVideoService videoService)
         {
-            this.context = context;
+            this.videoService = videoService;
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Video video, IFormFile? videoFile)
+        public async Task<IActionResult> Create(VideoViewModel videoViewModel, IFormFile? videoFile)
         {
             if (ModelState.IsValid)
             {
@@ -38,14 +34,14 @@ namespace OnlineCourse.Web_Project.Controllers
                         await videoFile.CopyToAsync(fileSteam);
                     }
 
-                    video.Url = "/uploads/" + fileName;
+                    videoViewModel.Url = "/uploads/" + fileName;
 
                 }
+                var video = VideoViewModelToVideoMapper.VideoViewModelToVideo(videoViewModel);
+                await videoService.AddAsync(video);
+                await videoService.SaveChangesAsync();
 
-                context.Add(video);
-                await context.SaveChangesAsync();
-
-                var videos = await context.Videos.Where(v => v.CourseId == video.CourseId).ToListAsync();
+                var videos = await videoService.GetAllByCourseIdAsync(video.Id);
                 return RedirectToAction("Details", "Courses", new { id = video.CourseId });
             }
             return BadRequest(ModelState);
@@ -56,7 +52,7 @@ namespace OnlineCourse.Web_Project.Controllers
         {
             if (id == null) return NotFound();
 
-            var video = await context.Videos.FindAsync(id);
+            var video = await videoService.GetById(id.Value);
             if (video == null) return NotFound();
 
             return View(video);
@@ -90,12 +86,12 @@ namespace OnlineCourse.Web_Project.Controllers
 
                 try
                 {
-                    context.Update(video);
-                    await context.SaveChangesAsync();
+                    videoService.Update(video);
+                    await videoService.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!context.Videos.Any(v => v.Id == id))
+                    if (videoService.GetById(id) == null)
                     {
                         return NotFound();
                     }
@@ -113,12 +109,12 @@ namespace OnlineCourse.Web_Project.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
-            var video = await context.Videos.FindAsync(id);
+            var video = await videoService.GetById(id);
             if (video == null) return NotFound();
             int courseId = video.CourseId;
-            context.Videos.Remove(video);
+            await videoService.DeleteAsync(courseId);
             System.IO.File.Delete(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", video.Url.TrimStart('/')));
-            await context.SaveChangesAsync();
+            await videoService.SaveChangesAsync();
             return RedirectToAction("Details", "Courses", new { id = courseId });
         }
     }

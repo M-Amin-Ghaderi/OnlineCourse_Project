@@ -1,0 +1,25 @@
+﻿@model List<CourseViewModel>
+
+
+<div class="d-flex flex-row flex-grow-1  flex-wrap justify-content-around">
+    <div class="w-100 mb-2">
+        <h2>جدید ترین دوره ها</h2>
+    </div>
+    <div class="flex-grow-1 d-flex flex-row justify-content-start">
+        @foreach (var item in Model)
+        {
+            <div class="card rounded-4 bg-light-subtle custom-card shadow link-zoom" style="width: 20rem;">
+                <img src="~/Images/@item.ImageUrl" class="card-img-top rounded-3" alt="@item.Title">
+                <div class="card-body h-50 overflow-hidden px-2 py-2">
+                    <div class="card-info rounded-2">
+                        <h5 class="py-2 m-0 card-title">@item.Title</h5>
+                        <div class="card-text">@item.Description</div>
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    <a href="#" class="btn btn-outline-success">مشاهده</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,66 @@
+﻿<div class="col-md-10 ms-sm-auto px-4">
+    <h2 class="my-3">داشبورد</h2>
+
+    <!-- Widgets -->
+    <div class="row mb-4">
+        <div class="col-md-3 text-decoration-none">
+            <div class="card text-white bg-primary mb-3 link-zoom">
+                <div class="card-body text-center text-nowrap row user-select-none">
+                    <div class="col-6 fw-bolder align-content-center">
+                        <label>
+                            تعداد دانشجو
+                        </label>
+                    </div>
+                    <div class="col-6 overflow-hidden">
+                        <label class="fw-bold p-1 ">
+                            @ViewData["StudentsCount"]
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a asp-controller="Courses" asp-action="Index" class="col-md-3 text-decoration-none ">
+            <div class="card text-white bg-success mb-3 link-zoom">
+                <div class="card-body text-center text-nowrap row user-select-none">
+                    <div class="col-6 fw-bolder align-content-center">
+                        تعداد دوره‌ها
+                    </div>
+                    <div class="col-6 overflow-hidden p-1">
+                        @ViewData["CourseCount"]
+                    </div>
+                </div>
+            </div>
+        </a>
+        <div class="col-md-3 text-decoration-none">
+            <div class="card text-white bg-warning mb-3 link-zoom">
+                <div class="card-body text-center text-nowrap row user-select-none">
+                    <div class="col-6 fw-bolder align-content-center">
+                        <label>
+                            درآمد کل $
+                        </label>
+                    </div>
+                    <div class="col-6 overflow-hidden p-1 ">
+                        @ViewData["TotalIncome"]
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 text-decoration-none">
+            <div class="card text-white bg-danger mb-3 link-zoom">
+                <div class="card-body text-center text-nowrap row user-select-none">
+                    <div class="col-6 fw-bolder align-content-center">
+                        <label>
+                            اعلان های جدید
+                        </label>
+                    </div>
+                    <div class="col-6 overflow-hidden">
+                        <label class="bg-light text-danger fw-bold rounded-2 p-1 ">
+                            0
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

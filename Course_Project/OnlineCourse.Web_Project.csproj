@@ -1,42 +1,46 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.19" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.8" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.8">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.8" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.8">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
-    <PackageReference Include="NAudio" Version="2.2.1" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.3" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.19" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.8" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.8">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.8" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.8">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
+		<PackageReference Include="NAudio" Version="2.2.1" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.3" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\AdminCourses\" />
-    <Folder Include="Areas\Teachers\Controllers\" />
-    <Folder Include="Areas\Teachers\Data\" />
-    <Folder Include="Areas\Teachers\Models\" />
-    <Folder Include="Areas\Teachers\Views\" />
-    <Folder Include="Migrations\" />
-    <Folder Include="wwwroot\uploads\" />
-  </ItemGroup>
+	<ItemGroup>
+		<Folder Include="Areas\Admin\Data\" />
+		<Folder Include="Areas\Admin\Models\" />
+		<Folder Include="Areas\Admin\Views\AdminCourses\" />
+		<Folder Include="Areas\Student\Controllers\" />
+		<Folder Include="Areas\Student\Data\" />
+		<Folder Include="Areas\Student\Models\" />
+		<Folder Include="Areas\Student\Views\" />
+		<Folder Include="Areas\Teacher\Data\" />
+		<Folder Include="Areas\Teacher\Models\" />
+		<Folder Include="Areas\Teacher\Views\Shared\Components\Courses\" />
+		<Folder Include="Migrations\" />
+		<Folder Include="wwwroot\videos\" />
+		<Folder Include="wwwroot\uploads\" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Domain\Domain.csproj" />
-    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Domain\Domain.csproj" />
+		<ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+	</ItemGroup>
 </Project>

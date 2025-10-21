@@ -1,0 +1,41 @@
+﻿using OnlineCourse_Project.Models;
+using System.ComponentModel.DataAnnotations;
+
+namespace OnlineCourse.Web_Project.ViewModels.Course
+{
+    public class CourseViewModel
+    {
+        public int Id { get; set; }
+
+        [Display(Name = "آیدی مدرس")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "متن {0} دوره نمیتواند خالی باشد")]
+        public int TeacherProfileId { get; set; }
+        [Display(Name = "عنوان")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "متن {0} دوره نمیتواند خالی باشد")]
+        [StringLength(50, ErrorMessage = "{0} نمیتواند بیش از 50 و کمتر از 10 کاراکتر باشد", MinimumLength = 10)]
+
+        public string Title { get; set; } = string.Empty;
+
+        [Display(Name = "توضیحات")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "متن {0} دوره نمیتواند خالی باشد")]
+        [StringLength(500, ErrorMessage = "{0} نمیتواند بیش از 500 و کمتر از 30 کاراکتر باشد", MinimumLength = 30)]
+        public string Description { get; set; } = string.Empty;
+
+        [Display(Name = "قیمت")]
+        [Required(ErrorMessage = "{0} دوره نمیتواند خالی باشد")]
+        [Range(0, 100000000, ErrorMessage = "{0} باید بین {1} و {2} باشد.")]
+        public decimal Price { get; set; }
+
+        [Display(Name = "تصویر")]
+        [Required(ErrorMessage = "{0} دوره نمیتواند خالی باشد")]
+        public string ImageUrl { get; set; } = string.Empty;
+        [Display(Name = "زمان ایجاد")]
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
+        [Display(Name = "وضیعت فعال")]
+        public bool IsActive { get; set; } = false;
+        [Display(Name = "وضعیف حذف")]
+        public bool IsDeleted { get; set; } = false;
+        [Display(Name = "ویدیو های دوره")]
+        public ICollection<Video> videos { get; set; } = new List<Video>();
+    }
+}

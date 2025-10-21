@@ -1,0 +1,21 @@
+﻿@model List<VideoViewModel>
+
+<table class="table table-primary table-bordered custom-table">
+    <tbody>
+        @foreach (var v in Model)
+        {
+            <tr>
+                <td class="rounded-2">
+                    <h4 class="fw-bold">
+                        عنوان :
+                        <label class="fw-bold h5 text-black">@v.Title</label>
+                    </h4>
+                    <video src="@v.Url" class="w-100 rounded-2" controls></video>
+                    <div class="text-center">
+                        <button class="btn btn-outline-danger" onclick="deleteVideo(@v.Id)">حذف</button>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

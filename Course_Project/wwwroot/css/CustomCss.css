@@ -1,0 +1,17 @@
+﻿.custom-table {
+    border-collapse: separate !important;
+    border-spacing: 10px;
+}
+
+.link-zoom {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .link-zoom:hover {
+        transform: scale(1.08);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+    .custom-card{
+        height:400px;
+        overflow:clip;
+    }

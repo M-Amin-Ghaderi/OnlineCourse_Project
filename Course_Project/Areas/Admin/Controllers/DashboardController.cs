@@ -14,9 +14,9 @@ namespace OnlineCourse.Web_Project.Areas.Admin.Controllers
     public class DashboardController : Controller
     {
         private readonly OnlineCourse_DbContext dbContext;
-        private readonly UserManager<User> userManager;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public DashboardController(OnlineCourse_DbContext dbContext, UserManager<User> userManager)
+        public DashboardController(OnlineCourse_DbContext dbContext, UserManager<ApplicationUser> userManager)
         {
             this.dbContext = dbContext;
             this.userManager = userManager;
@@ -24,7 +24,7 @@ namespace OnlineCourse.Web_Project.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             var users = await userManager.Users.ToListAsync();
-            var noneAdminUsers = new List<User>();
+            var noneAdminUsers = new List<ApplicationUser>();
             foreach (var user in users)
             {
                 if (!await userManager.IsInRoleAsync(user, "Admin"))
@@ -35,10 +35,6 @@ namespace OnlineCourse.Web_Project.Areas.Admin.Controllers
 
             ViewData["CourseCount"] = dbContext.Courses.Count();
             ViewData["UsersCount"] = noneAdminUsers.Count;
-            return View();
-        }
-        public IActionResult Courses()
-        {
             return View();
         }
         public IActionResult Users()

@@ -1,0 +1,48 @@
+﻿@model VideoCreateViewModel
+
+<div id="addVideo" class="btn btn-outline-warning user-select-all mb-2">
+    <label class="user-select-none">افزودن ویدیو جدید +</label>
+</div>
+
+<div class="bg-success-subtle rounded-4 mb-2">
+    <form id="addVideoForm" method="post" class="d-none p-3" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+        <table class="w-100">
+            <tr class="col-12">
+                <td>
+                    <input type="hidden" asp-for="CourseId"/>
+                    <div class="mb-2">
+                        <label>عنوان ویدیو</label>
+                        <input id="titleInput" type="text" asp-for="Title" class="form-control" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="mb-2">
+                        <button type="button" id="videoSelectBtn" class="btn btn-outline-primary mb-2">➕ انتخاب ویدیو</button>
+                        <input id="videoInput" type="file" asp-for="VideoFile" accept="video/*" class="d-none" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="videosList" class="row mb-2"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="mb-2">
+                        <button type="button" id="deletSelectedVideoBtn" class="btn btn-outline-danger d-none mb-2">حذف ویدیو</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button id="uploadVideoBtn" type="button" class="d-none btn btn-outline-success mb-2">➕ آپلود ویدیو</button>
+                </td>
+            </tr>
+
+        </table>
+    </form>
+</div>

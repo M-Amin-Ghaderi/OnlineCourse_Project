@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@inject UserManager<User> UserManager
-@inject SignInManager<User> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<ApplicationUser> SignInManager
 
 
 @if (SignInManager.IsSignedIn(User))
@@ -8,17 +8,14 @@
     if (User.IsInRole("Admin"))
     {
         <li class="nav-item">
-            <a class="btn btn-secondary" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">پنل ادمین</a>
-        </li>
-        <li class="nav-item">
-            <a class="btn btn-danger" asp-area="" asp-controller="Accounts" asp-action="LogOut">
-                خروج
-            </a>
+            <a class="btn btn-outline-info" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">پنل کاربری</a>
         </li>
     }
     else if (User.IsInRole("Teacher"))
     {
-
+        <li class="nav-item">
+            <a class="btn btn-outline-info" asp-area="Teacher" asp-controller="Dashboard" asp-action="Index">پنل کاربری</a>
+        </li>
     }
     else
     {
@@ -27,20 +24,20 @@
                 سلام @User.Identity?.Name
             </a>
         </li>
-        <li class="nav-item">
-            <a class="btn btn-danger" asp-controller="Accounts" asp-action="LogOut">
-                خروج
-            </a>
-        </li>
     }
+    <li class="nav-item">
+        <a class="btn btn-outline-danger" asp-area="" asp-controller="Accounts" asp-action="LogOut">
+            خروج
+        </a>
+    </li>
 }
 else
 {
     <li class="nav-item">
-        <a class="btn btn-secondary" asp-controller="Accounts" asp-action="Login">ورود</a>
+        <a class="btn btn-outline-info" asp-controller="Accounts" asp-action="Login">ورود</a>
     </li>
     <li class="nav-item">
-        <a class="btn btn-secondary" asp-controller="Accounts" asp-action="Register">ثبت‌نام</a>
+        <a class="btn btn-outline-info" asp-controller="Accounts" asp-action="Register">ثبت‌نام</a>
     </li>
 }
 

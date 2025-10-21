@@ -1,0 +1,47 @@
+﻿@model List<CourseViewModel>
+<main class="col-md-10 ms-sm-auto px-4">
+    <h2 class="my-3">لیست دوره ها</h2>
+
+    <a asp-action="Create" class="btn btn-outline-success my-3">افزودن دوره جدید +</a>
+
+    <table class="table table-striped table-success table-hover">
+        <thead>
+            <tr>
+                <th class="align-content-center">عنوان</th>
+                <th class="align-content-center">قیمت</th>
+                <th class="align-content-center">عملیات</th>
+                <th class="align-content-center">وضیعت</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="align-content-center">@item.Title</td>
+                    <td class="align-content-center">@item.Price.ToString("N0") تومان</td>
+                    <td class="align-content-center">
+                        @{
+                            string encodeId = Convert.ToBase64String(BitConverter.GetBytes(item.Id));
+                        }
+                        <a asp-area="Teacher" asp-controller="Courses" asp-action="Details"
+                           asp-route-id="@encodeId"
+                           class="btn btn-outline-info">جزئیات دوره</a>
+                        <a asp-area="Teacher" asp-controller="Courses" asp-action="Edit"
+                           asp-route-id="@encodeId"
+                           class="btn btn-outline-warning">ویرایش دوره</a>
+                    </td>
+                    <td class="align-content-center">
+
+                        @if (item.IsActive)
+                        {
+                            <span class="text-success rounded-5 p-2 bg-dark fw-bolder">فعال</span>
+                        }
+                        else
+                        {
+                            <span class="text-danger rounded-5 p-2 bg-dark fw-bolder">غیرفعال</span>
+                        }
+                </tr>
+            }
+        </tbody>
+    </table>
+</main>

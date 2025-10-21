@@ -7,7 +7,13 @@
         public string Title { get; set; } = string.Empty;
         public string Url { get; set; } = string.Empty ;
 
+        public string Description { get; set; }
+
+        public bool IsDeleted { get; set; } = false;
+
         public TimeSpan Duration { get; set; }
         public Course? Course { get; set; }
+
+
     }
 }

@@ -8,10 +8,10 @@ namespace OnlineCourse.Web_Project.Controllers
 {
     public class AccountsController : Controller
     {
-        private readonly UserManager<User> userManager;
-        private readonly SignInManager<User> signInManager;
+        private readonly UserManager<ApplicationUser> userManager;
+        private readonly SignInManager<ApplicationUser> signInManager;
 
-        public AccountsController(UserManager<User> userManager, SignInManager<User> signInManager)
+        public AccountsController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
@@ -27,7 +27,7 @@ namespace OnlineCourse.Web_Project.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User
+                var user = new ApplicationUser
                 {
                     UserName = model.Username,
                     Email = model.Email,
@@ -35,7 +35,7 @@ namespace OnlineCourse.Web_Project.Controllers
                 var result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await userManager.AddToRoleAsync(user, "User");
+                    await userManager.AddToRoleAsync(user, "Student");
 
                     await signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
@@ -79,7 +79,7 @@ namespace OnlineCourse.Web_Project.Controllers
         }
 
 
-        private async Task<IActionResult> RedirectUserByRole(User user)
+        private async Task<IActionResult> RedirectUserByRole(ApplicationUser user)
         {
             var roles = await userManager.GetRolesAsync(user);
             if (roles.Contains("Admin"))
